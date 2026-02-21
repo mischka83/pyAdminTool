@@ -1,0 +1,7 @@
+{
+    "ldaps_url": "ldaps://your-server:636",
+    "username": "DOMAIN\\username",
+    "password": "encrypted_password_here",
+    "base_dn": "DC=example,DC=local",
+    "feld5": ""
+}

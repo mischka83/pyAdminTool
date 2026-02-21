@@ -1,0 +1,76 @@
+# =========================
+# 🔐 Sensitive Config Files
+# =========================
+config.json
+secret.key
+.env
+*.env
+
+# =========================
+# 🐍 Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+MANIFEST
+
+# PyInstaller
+*.spec
+# (Falls du deine .spec versionieren willst, entferne diese Zeile)
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+pytest_cache/
+
+# =========================
+# 🧪 Virtual Environments
+# =========================
+venv/
+.venv/
+env/
+ENV/
+
+# =========================
+# 🧠 IDEs & Editor
+# =========================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# =========================
+# 🖥️ OS Files
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# 🔒 Logs
+# =========================
+*.log
+
+# =========================
+# 🗂️ Temporary Files
+# =========================
+*.tmp
+*.bak
+*.swp
