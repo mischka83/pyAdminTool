@@ -2,7 +2,8 @@ name: Build Executables
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -14,20 +15,23 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - run: |
+      - name: Install dependencies
+        run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pyinstaller
 
-      - run: |
+      - name: Build EXE
+        run: |
           pyinstaller --onefile --name pyadmintool src/main.py
 
       - uses: actions/upload-artifact@v4
         with:
           name: pyadmintool-windows
           path: dist/pyadmintool.exe
+
 
   build-linux:
     runs-on: ubuntu-latest
@@ -37,33 +41,44 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - run: |
+      - name: Install dependencies
+        run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pyinstaller
 
-      - run: |
+      - name: Build Binary
+        run: |
           pyinstaller --onefile --name pyadmintool src/main.py
 
       - name: Install AppImageTool
         run: |
-          wget https://github.com/AppImage/AppImageKit/releases/latest/download/appimagetool-x86_64.AppImage
-          chmod +x appimagetool-x86_64.AppImage
+          wget -O appimagetool.AppImage \
+          https://github.com/AppImage/AppImageKit/releases/latest/download/appimagetool-x86_64.AppImage
+          chmod +x appimagetool.AppImage
 
-      - name: Create AppDir structure
+      - name: Create AppDir
         run: |
           mkdir -p AppDir/usr/bin
           cp dist/pyadmintool AppDir/usr/bin/
-          echo -e "[Desktop Entry]\nType=Application\nName=PyAdminTool\nExec=pyadmintool\nIcon=utilities-terminal\nCategories=Utility;" > AppDir/pyadmintool.desktop
           chmod +x AppDir/usr/bin/pyadmintool
+
+          cat <<EOF > AppDir/pyadmintool.desktop
+          [Desktop Entry]
+          Type=Application
+          Name=PyAdminTool
+          Exec=pyadmintool
+          Icon=utilities-terminal
+          Categories=Utility;
+          EOF
 
       - name: Build AppImage
         run: |
-          ./appimagetool-x86_64.AppImage AppDir
+          ./appimagetool.AppImage AppDir
 
       - uses: actions/upload-artifact@v4
         with:
           name: pyadmintool-linux-appimage
-          path: *.AppImage
+          path: "*.AppImage"
