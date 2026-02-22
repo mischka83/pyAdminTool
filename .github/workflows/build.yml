@@ -63,14 +63,12 @@ jobs:
           cp dist/pyadmintool AppDir/usr/bin/
           chmod +x AppDir/usr/bin/pyadmintool
 
-          cat <<EOF > AppDir/pyadmintool.desktop
-[Desktop Entry]
-Type=Application
-Name=PyAdminTool
-Exec=pyadmintool
-Icon=utilities-terminal
-Categories=Utility;
-EOF
+          echo "[Desktop Entry]" > AppDir/pyadmintool.desktop
+          echo "Type=Application" >> AppDir/pyadmintool.desktop
+          echo "Name=PyAdminTool" >> AppDir/pyadmintool.desktop
+          echo "Exec=pyadmintool" >> AppDir/pyadmintool.desktop
+          echo "Icon=utilities-terminal" >> AppDir/pyadmintool.desktop
+          echo "Categories=Utility;" >> AppDir/pyadmintool.desktop
 
       - name: Build AppImage
         run: |
