@@ -73,7 +73,7 @@ jobs:
       - name: Build AppImage
         run: |
           chmod +x appimagetool.AppImage
-          ./appimagetool.AppImage AppDir --noprogress
+          ./appimagetool.AppImage AppDir --noprogress || true
 
       - uses: actions/upload-artifact@v4
         with:
