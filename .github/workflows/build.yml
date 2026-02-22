@@ -50,7 +50,7 @@ jobs:
 
       - name: Build Linux binary
         run: |
-          pyinstaller --onefile --name pyadmintool src/main.py
+          pyinstaller --onedir --name pyadmintool src/main.py
 
       - name: Download AppImageTool
         run: |
