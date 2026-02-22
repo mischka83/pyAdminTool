@@ -60,7 +60,7 @@ jobs:
       - name: Prepare AppDir
         run: |
           mkdir -p AppDir/usr/bin
-          cp dist/pyadmintool AppDir/usr/bin/
+          cp -r dist/pyadmintool AppDir/usr/bin/
           chmod +x AppDir/usr/bin/pyadmintool
 
           echo "[Desktop Entry]" > AppDir/pyadmintool.desktop
