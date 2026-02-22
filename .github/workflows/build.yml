@@ -55,9 +55,8 @@ jobs:
 
       - name: Install AppImageTool
         run: |
-          wget -O appimagetool.AppImage \
-          https://github.com/AppImage/AppImageKit/releases/latest/download/appimagetool-x86_64.AppImage
-          chmod +x appimagetool.AppImage
+          wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
 
       - name: Create AppDir
         run: |
@@ -76,7 +75,7 @@ jobs:
 
       - name: Build AppImage
         run: |
-          ./appimagetool.AppImage AppDir
+          ./appimagetool-x86_64.AppImage AppDir
 
       - uses: actions/upload-artifact@v4
         with:
